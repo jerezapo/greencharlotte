@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Green Charlotte</title>
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!--Greenpoints.js-->
+    <script src="/assets/js/greenpoints.js"></script>
+
+    <!-- Font Awesome Glyphicons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!--Local Style Sheet-->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="well">
+            <img src="/assets/images/biketrail.jpeg" width='100%'>
+            <hr>
+            <h2 class=" " align="middle">Green Charlotte</h2>
+        </div>
+        <div class="row">
+            <!-- FORM -->
+            <div class="col-md-6" align="left">
+                <form id="searchByTheme">
+                    <div class="form-group">
+                        <!-- Search DB -->
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">
+                                    <span class="glyphicon glyphicon-globe">
+      							</span> &nbsp; Search Database
+                                </h1>
+                            </div>
+                            <div class="panel-body">
+                                <!-- DB Theme, labeled category, required -->
+                                <label for="Theme">Select Category:</label>
+                                <!-- for changed to match DB -->
+                                <select class="form-control" id="category" required>
+								<option value="B-Cycle Station">B-Cycle Station</option>
+								<option value="Big Belly Station">Big Belly Station</option>
+								<option value="Bike Trail">Bike Trail</option>
+								<option value="Community Garden">Community Garden</option>
+								<option value="Electric Vehicle Charging Station">Electric Vehicle Charging Station</option>
+								<option value="Farm">Farm</option>
+								<option value="Farmer's Market">Farmer's Market</option>
+								<option value="Green Roof">Green Roof</option>
+								<option value="Greenway/Trail">Greenway/Trail</option>
+								<option value="LEED Certified Building">LEED Certified Building</option>
+								<option value="Park">Park</option>
+								<option value="Solar">Solar</option>
+								<option value="Tree">Tree</option>
+  							</select>
+                                <br />
+                                <!-- Submit the search request -->
+                                <button type="submit" class="btn btn-success" id="submitSearch">Submit</button>
+                            </div>
+                        </div>
+                </form>
+                </div>
+            </div>
+            <div class="col-md-6" align="right">
+                <form id="searchByDBID">
+                    <div class="form-group">
+                        <!-- Search DB -->
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">
+                                    <span class="glyphicon glyphicon-globe">
+      							</span> &nbsp; Update Database
+                                </h1>
+                            </div>
+                            <div class="panel-body">
+                                <!-- Feature ID, Optional  -->
+                                <label for="featureid">ID:</label>
+                                <!-- updated to match DB -->
+                                <input type="text" class="form-control" id="featureid">
+                                <br />
+                                <!-- Submit the Citizen Contr. from -->
+                                <button type="submit" class="btn btn-success" id="submitID">Submit</button>
+                            </div>
+                        </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <div class="well" id="greenpoints" align="middle">
+            <h2>Search greenpoints</h2>
+        </div>
+</body>
+
+</html>

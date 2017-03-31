@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Citizen Contribution - Add your contribution to Green Charlotte</title>
+    <!-- meta information -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="Green Charlotte, Green Locations in Charlotte">
+    <meta name="author" content="Green Charlotte">
+    <meta property=”og:image” content="../public/assets/images/park.jpg" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="form" />
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBhYZ_SgvHx2SuEjwPFIYDD-5mVG7O0V50">
+    </script>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h2 align="middle">Citizen Contribution for Green Charlotte</h2>
+        <div class="row">
+            <!-- FORM -->
+            <div class="col-md-6 col-md-offset-3">
+                <form id="citizenContribution">
+                    <div class="form-group">
+                        <!-- Feature Main -->
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">
+                                    <span class="glyphicon glyphicon-globe">
+      							</span> &nbsp;Feature Information
+                                </h1>
+                            </div>
+                            <div class="panel-body">
+
+                                <!-- Feature Name, required  -->
+                                <label for="FeatureName">Feature Name: <span style="color:red;">*</span></label>
+                                <!-- updated to match DB -->
+                                <input type="text" class="form-control required" id="featureName" required>
+                                <br />
+                                <!-- DB Theme, labeled category, required -->
+                                <label for="Theme">Select Category: <span style="color:red;">*</span></label>
+                                <!-- for changed to match DB -->
+                                <select class="form-control required" id="category" required>
+								<option value="Bike Trail">Bike Trail</option>
+								<option value="Community Garden">Community Garden</option>
+								<option value="Electric Vehicle Charging Station">Electric Vehicle Charging Station</option>
+								<option value="Farm">Local Farm</option>
+								<option value="Farmer's Market">Farmer's Market</option>
+								<option value="Green Roof">Green Roof</option>
+								<option value="LEED Certified Building">LEED Certified Building</option>
+								<option value="Park">Park</option>
+								<option value="Solar">Solar Panels</option>
+								<option value="Tree">Tree</option>
+ 							</select>
+								<br />
+                                <!-- Feature Description, required  -->
+                                <label for="FeatureDetails">Feature Description:</label>
+                                <textarea class="form-control" rows="3" id="body"></textarea>
+
+                            </div>
+                        </div>
+
+                        <!-- Feature Location Information -->
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">
+                                    <span class="glyphicon glyphicon-map-marker">
+      							</span> &nbsp;Location Information
+                                </h1>
+                            </div>
+                            <div class="panel-body">
+
+                                <!-- Feature Location Street Address, required -->
+                                <label for="FeatureLocation">Location Street Address: <span style="color:red;">*</span></label>
+                                <input type="text" class="form-control required" id="FeatureLocation" value="Enter Address or Get Location" id="addy" required>
+                                <br />
+                                <input type="button" class="btn btn-success" id="getLocation" onclick="getLocation()" value="Get Location"/>
+
+                                <br />
+                            </div>
+                        </div>
+
+                        <!-- Image(s) Details. not required -->
+
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">
+                                    <span class="glyphicon glyphicon-picture">
+      							</span> &nbsp;Image Information
+                                </h1>
+                            </div>
+                            <div class="panel-body">
+
+                                <!-- Image 1 URL -->
+                                <label for="Image1Path">Image URL:</label>
+                                <div class="input-group"><span class="input-group-addon glyphicon glyphicon-link"></span>
+                                    <input type="url" class="form-control" id="Image1Path">
+                                </div>
+                                <br />
+                                <!-- Image 1 Description -->
+                                <label for="Image1Description">Image Description:</label>
+                                <input type="text" class="form-control" id="Image1Description">
+                                <br />
+                            </div>
+                        </div>
+
+                        <!-- URLs, not required -->
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">
+                                    <span class="glyphicon glyphicon-link">
+      							</span> &nbsp;Link Information
+                                </h1>
+                            </div>
+                            <div class="panel-body">
+
+                                <!-- URL 1 to feature site -->
+                                <label for="Link1Path">Feature Site URL:</label>
+                                <div class="input-group"><span class="input-group-addon glyphicon glyphicon-link"></span>
+                                    <input type="url" class="form-control" id="Link1Path">
+                                </div>
+                                <br />
+                                <!-- URL 1 Name -->
+                                <label for="Link1Description">Feature Site URL Name:</label>
+                                <input type="text" class="form-control" id="Link1Description">
+                                <br />
+                            </div>
+                        </div>
+
+                    </div>
+					<div class="form-group">
+					    <span class="text-muted"><em><span style="color:red;">*</span> Indicates required field</em></span>
+					  </div>
+                    <!-- Submit the Citizen Contr. from -->
+                    <button type="submit" class="btn btn-success" id="submit">Submit</button>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    </div>
+
+
+    <!-- Submit Script  -->
+
+    <script type="text/javascript">
+        // Capture the form inputs 
+        $("#submit").on("click", function() {
+            event.preventDefault();
+            // Form validation
+            function validateForm() {
+                var isValid = true;
+                $('.form-control').each(function() {
+                    if ($(this).val() === '')
+                        isValid = false;
+                });
+                $('.chosen-select').each(function() {
+                    if ($(this).val() === "")
+                        isValid = false
+                })
+                return isValid;
+                console.log("Form is returned valid");
+            }
+            // Clear the Form
+            function clearForm() {
+                console.log("In Post");
+                $('.citizenContribution').each(function() {
+                    $(this).val('');
+                });
+            }
+            // If all required fields are filled
+            if (validateForm() == true) {
+                var currentURL = window.location.origin;
+                var userData = {
+                    FeatureName: $("#featureName").val(),
+                    Theme: $("#category").val(),
+                    FeatureDetails: $("#body").val(),
+                    FeatureLocation: $("#FeatureLocation").val(),
+                    Image1Path: $("#Image1Path").val(),
+                    Image1Description: $("#Image1Description").val(),
+                    Link1Path: $("#Link1Path").val(),
+                    Link1Description: $("#Link1Description").val(),
+                }
+                console.log(JSON.stringify(userData));
+                var zip = $("#FeatureZip").val();
+                // AJAX post the data to greenLocations 
+                $.post(currentURL + "/api/citizencontribution", userData, function(data) {
+                    console.log("In Post");
+                    alert("This was added to the database: " + userData);
+                    // Clear the page so someone cannot submit duplicate profiles immediately
+                    // clearForm();
+                });
+            } else {
+                alert("ALERT! Please fill out all fields before submitting!");
+            }
+            return false;
+        });
+		$("#getLocation").on("click", function() {
+		      console.log("Entering getLocation()");
+		      if(navigator.geolocation){
+		      navigator.geolocation.getCurrentPosition(
+		      displayCurrentLocation,
+		      displayError,
+		      { 
+		        maximumAge: 3000, 
+		        timeout: 5000, 
+		        enableHighAccuracy: true 
+		      });
+		    }else{
+		      console.log("Oops, no geolocation support");
+		    } 
+		      console.log("Exiting getLocation()");
+		    });
+		    function displayCurrentLocation(position){
+		      console.log("Entering displayCurrentLocation");
+		      var latitude = position.coords.latitude;
+		        var longitude = position.coords.longitude;
+		    console.log("Latitude " + latitude +" Longitude " + longitude);
+		    getAddressFromLatLang(latitude,longitude);
+		      console.log("Exiting displayCurrentLocation");
+		    }
+		   function  displayError(error){
+		    console.log("Entering ConsultantLocator.displayError()");
+		    var errorType = {
+		      0: "Unknown error",
+		      1: "Permission denied by user",
+		      2: "Position is not available",
+		      3: "Request time out"
+		    };
+		    var errorMessage = errorType[error.code];
+		    if(error.code == 0  || error.code == 2){
+		      errorMessage = errorMessage + "  " + error.message;
+		    }
+		    alert("Error Message " + errorMessage);
+		    console.log("Exiting ConsultantLocator.displayError()");
+		  }
+		    function getAddressFromLatLang(lat,lng){
+		      console.log("Entering getAddressFromLatLang()");
+		      var geocoder = new google.maps.Geocoder();
+		        var latLng = new google.maps.LatLng(lat, lng);
+		        geocoder.geocode( { 'latLng': latLng}, function(results, status) {
+		        console.log("After getting address");
+		        console.log(results);
+		        if (status == google.maps.GeocoderStatus.OK) {
+		          if (results[1]) {
+		            console.log(results[1]);
+		            // alert(results[1].formatted_address);
+		            // console.log("User Location: " + results[1].formatted_address);
+		            document.getElementById("FeatureLocation").value = results[1].formatted_address;
+		          }
+		        }else{
+		          alert("Sorry, we could not find your location for the following reason: " + status);
+		        }
+		        });
+		      console.log("Entering getAddressFromLatLang()");
+		    }
+	</script>
+
+</body>
+
+</html>
